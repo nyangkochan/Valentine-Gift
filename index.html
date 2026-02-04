@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valday</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --pink:#ff6f9a;
+      --soft:#fff0f6;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --shadow:0 14px 40px rgba(0,0,0,.12);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(135deg, #ffd6e8, #ffffff);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      color:var(--ink);
+      padding:22px;
+    }
+    .wrap{ width:min(420px, 92vw); }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .top{
+      padding:18px 20px;
+      background:rgba(255,111,154,.10);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .pill{
+      font-size:12px;
+      color:var(--muted);
+      background:#fff;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.08);
+      white-space:nowrap;
+    }
+    .content{ padding:22px; }
+    h1,h2{margin:0 0 10px 0}
+    p{margin:10px 0; line-height:1.55}
+    .muted{color:var(--muted); font-size:14px}
+    .center{text-align:center}
+
+    .envelope{
+      background:var(--soft);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      padding:22px;
+      text-align:center;
+    }
+    .seal{
+      width:64px;height:64px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #ffd6e8, var(--pink));
+      display:inline-flex;align-items:center;justify-content:center;
+      color:#fff;font-size:26px;
+      box-shadow:0 10px 25px rgba(255,111,154,.35);
+      margin-bottom:10px;
+    }
+    .btn{
+      border:none;
+      background:var(--pink);
+      color:#fff;
+      padding:12px 16px;
+      border-radius:999px;
+      font-size:15px;
+      cursor:pointer;
+      width:100%;
+      margin-top:12px;
+    }
+    .btn.secondary{ background:#111827; }
+
+    .hidden{display:none}
+    .letter{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+    .divider{
+      height:1px;background:rgba(0,0,0,.08);
+      margin:16px 0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    .chip{
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      border-radius:999px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-size:14px;
+      text-align:center;
+    }
+    .box{
+      margin-top:14px;
+      background:rgba(255,111,154,.08);
+      border:1px solid rgba(255,111,154,.18);
+      border-radius:18px;
+      padding:14px;
+      min-height:70px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      line-height:1.5;
+    }
+    .sig{
+      margin-top:14px;
+      font-size:14px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    input[type="password"]{
+      width:100%;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.15);
+      margin-top:10px;
+      font-size:14px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <!-- PASSWORD SCREEN -->
+      <div id="lock" class="content">
+        <div class="envelope">
+          <div class="seal">🔒</div>
+          <h2>Private Page</h2>
+          <p class="muted">Masukin password dulu ya</p>
+          <input id="passwordInput" type="password" placeholder="password" />
+          <button class="btn" onclick="checkPassword()">Masuk</button>
+          <p id="errorMsg" class="muted" style="display:none; margin-top:8px;">
+            ini nama grup kita jirr masa gatau🙃
+          </p>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div id="main" class="hidden">
+        <div class="top">
+          <div class="pill">🎁 Hadiah Valday untuk Nyangko Fwends</div>
+          <div class="pill">14 Feb</div>
+        </div>
+
+        <div class="content">
+          <!-- COVER -->
+          <div id="cover" class="envelope">
+            <div class="seal">💗</div>
+            <h2>Hai</h2>
+            <p class="muted">Klik untuk buka suratnya yaaa</p>
+            <button class="btn" onclick="openLetter()">Buka</button>
+          </div>
+
+          <!-- LETTER -->
+          <div id="letter" class="hidden">
+            <div class="letter">
+              <h1>Happy Valentine’s Day</h1>
+
+              <p>
+                Ini kek cuma word of affirmations kecil aja sih.
+                Maap ya cuma ini ajaa, moga bisa ngebantu yaa.
+              </p>
+
+              <p>
+                Terima kasih udah jadi temen buat aku yang introvert ini,
+                pake caramu sendiri udah keren kece amat, 
+                n pastinya berarti hehe #sori alay.
+              </p>
+
+              <p>
+                Hari ini, kapan pun, lagi ngerasa apa pun dibukanya,
+                pilih yang paling sesuai moodmu, siapa tau ngebantu hehe.
+              </p>
+
+              <p>
+                ps: klik tombol berulang kali ada beberapa message lhooo.
+              </p>
+
+              <div class="divider"></div>
+
+              <div class="grid">
+                <div class="chip" onclick="give('tired')">capek</div>
+                <div class="chip" onclick="give('sad')">sedih</div>
+                <div class="chip" onclick="give('overthinking')">overthinking</div>
+                <div class="chip" onclick="give('anxious')">cemas</div>
+                <div class="chip" onclick="give('happy')">lagi seneng</div>
+                <div class="chip" onclick="give('loved')">ngerasa disayang</div>
+                <div class="chip" onclick="give('proud')">lagi bangga</div>
+                <div class="chip" onclick="give('excited')">lagi semangat</div>
+              </div>
+
+              <div class="box" id="box">
+                klik salah satu.
+              </div>
+
+              <button class="btn secondary" style="margin-top:12px;" onclick="randomAff()">
+                random affirmations
+              </button>
+
+              <div class="sig">— Bianca</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  const PASSWORD = "knsprs";
+
+  function checkPassword(){
+    const input = document.getElementById("passwordInput").value;
+    const error = document.getElementById("errorMsg");
+
+    if(input === PASSWORD){
+      document.getElementById("lock").classList.add("hidden");
+      document.getElementById("main").classList.remove("hidden");
+    } else {
+      error.style.display = "block";
+    }
+  }
+
+  function openLetter(){
+    document.getElementById("cover").classList.add("hidden");
+    document.getElementById("letter").classList.remove("hidden");
+  }
+
+  const affirmations = {
+    tired: [
+      "Istirahat itu bukan kalah. Kamu cuma lagi butuh jeda.",
+      "Kalau hari ini berat, cukup kerjain yang paling kecil dulu. Itu juga progress.",
+      "Nggak apa-apa kalau kamu nggak kuat terus. Kamu manusia hehe."
+    ],
+    sad: [
+      "Kalau kamu lagi sedih, itu valid. Kamu ga alay kok.",
+      "Nggak harus kuat sekarang, pelan-pelan aja, pasti ada jalan.",
+      "Perasaan ini bakal lewat. Kamu tetap kamu, strong hooman."
+    ],
+    overthinking: [
+      "Nggak semua pikiran harus diikutin. Ada aja cuma numpang lewat hahaha",
+      "Kamu nggak perlu beresin semuanya saat ini. Besok masih ada.",
+      "Tarik napas dulu. Pasti ada jalannya yaa, progress itu nggak selalu kelihatan."
+    ],
+    anxious: [
+      "Pelan-pelan ya. Fokus ke satu langkah kecil aja.",
+      "Kalau cemasnya rame, itu bukan berarti kamu gagal. Kamu cuma lagi capek.",
+      "Kamu nggak sendirian. Suer deh."
+    ],
+    happy: [
+      "Seneng tuh boleh banget. Nikmatin ajaa sepuasnyaaa😄",
+      "Kamu pantes dapet hari-hari yang enak, bukan cuma pas ‘berhasil’ aja.",
+      "Aku ikut seneng kalau kamu seneng anjayy hiks."
+    ],
+    loved: [
+      "Kamu tu disayang banyak orang loh, dari dulu.",
+      "Kamu nggak perlu jadi versi ‘paling oke’ buat layak disayang.",
+      "Aku bersyukur kamu ada di hidupku anjayy duh alay."
+    ],
+    proud: [
+      "Bangga ya sama diri kamu—bukan cuma hasilnya, tapi karena kamu tetap jalan.",
+      "Versi kamu yang dulu pasti bakal lega lihat kamu sekarang.",
+      "Kamu lagi tumbuh, dan itu keren banget banget."
+    ],
+    excited: [
+      "Tularin Semangatnya dong, serius! Keep going ✨",
+      "Kalau ada hal baik datang, boleh share sama aku ga hehe?",
+      "Aku percaya sama kamu fixxxx."
+    ]
+  };
+
+  function pick(arr){
+    return arr[Math.floor(Math.random()*arr.length)];
+  }
+
+  function give(mood){
+    document.getElementById("box").textContent = pick(affirmations[mood]);
+  }
+
+  function randomAff(){
+    const moods = Object.keys(affirmations);
+    give(moods[Math.floor(Math.random()*moods.length)]);
+  }
+</script>
+</body>
+</html>
